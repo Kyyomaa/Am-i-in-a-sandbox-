@@ -22,7 +22,10 @@ impl Scorable<u32> for ProcChecker {
         else 
         { 0.0 }
     }
-
+    fn weight(&self) -> f64 {
+        0.3  // 30% weight for processor check
+    }
+    
     fn create_comment(&self) -> String {
         if self.calculate_score() == 0.6 {
             "Proc number too low (potato computer). Suspicious".into()
@@ -30,18 +33,22 @@ impl Scorable<u32> for ProcChecker {
             "Proc num OK".into()
         }
     }
+    fn weighted_score(&self) -> f64 {
+        self.calculate_score() * self.weight()
+    }
 
     fn build_struct(&self) -> crate::detection::shared::CheckResult<u32> {
         let result: u32 = sys_info();
         crate::detection::shared::CheckResult::new(
             result,
+            self.weight(),
             self.calculate_score(),
+            self.weighted_score(), 
             self.create_comment()
         )
     }
 
 }
-
 
 pub fn main () {
         let checker = ProcChecker;
@@ -49,6 +56,7 @@ pub fn main () {
         println!("Uptime Results:");
         println!("- Value: {} processors", result.result);
         println!("- Score: {}", result.score);
+        println!("- Weighted Score: {}", result.weighted_score);
         println!("- Comment: {}", result.comment);
     }
 
