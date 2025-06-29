@@ -24,7 +24,7 @@ impl Scorable<u32> for ProcChecker {
         { 0.0 }
     }
     fn weight(&self) -> f64 {
-        0.3  // 30% weight for processor check
+        0.5  // 30% weight for processor check
     }
     
     fn create_comment(&self) -> String {

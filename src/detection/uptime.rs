@@ -14,7 +14,7 @@ impl Scorable<u64> for UptimeChecker {
         { 0.0}
     }
     fn weight(&self) -> f64 {
-        0.5 
+        0.7 
     }
     
     fn create_comment(&self) -> String {
