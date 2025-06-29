@@ -5,9 +5,11 @@ use colored::Colorize;
 //Probabilistic Detection 
 pub fn score() {
     // Initialize all checkers
-    let uptime_checker = detection::uptime::UptimeChecker;
-    let proc_checker = detection::processor::ProcChecker;
-    let ram_checker = detection::ram::Mem;
+    let uptime_checker: detection::uptime::UptimeChecker = detection::uptime::UptimeChecker;
+    let proc_checker: detection::processor::ProcChecker = detection::processor::ProcChecker;
+    let ram_checker: detection::ram::Mem = detection::ram::Mem;
+    let gb_checker: detection::memory::Gb= detection::memory::Gb;
+
 
     let mut check_results = Vec::new();
     let mut combined_probability = 1.0; // Start with 100% chance of being genuine
@@ -38,6 +40,17 @@ pub fn score() {
         ram_result.weighted_score,
         ram_result.comment
     ));
+
+    let gb_result = gb_checker.build_struct();
+    combined_probability *= 1.0 - gb_result.weighted_score;
+    check_results.push((
+        "Disk Check",
+        gb_result.result.to_string(),
+        gb_result.weighted_score,
+        gb_result.comment
+    ));
+
+
 
     // ill Add more checks ...
 
