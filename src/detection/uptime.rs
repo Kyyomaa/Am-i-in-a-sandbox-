@@ -1,6 +1,7 @@
 // src/detection/uptime.rs
 use windows::Win32::System::SystemInformation::GetTickCount64;
 use crate::detection::shared::Scorable;
+use colored::Colorize;
 
 pub struct UptimeChecker;
 
@@ -18,9 +19,9 @@ impl Scorable<u64> for UptimeChecker {
     
     fn create_comment(&self) -> String {
         if self.calculate_score() == 0.35 {
-            "Tick count too low. Suspicious".into()
+            "Tick count too low. Suspicious".red().to_string()
         } else {
-            "Tick count OK".into()
+            "Tick count OK".to_string()
         }
     }
     fn weighted_score(&self) -> f64 {
@@ -41,7 +42,7 @@ impl Scorable<u64> for UptimeChecker {
 
 }
 
-    pub fn main() {
+    /* pub fn main() {
         let checker = UptimeChecker;
         let result = checker.build_struct();
         
@@ -51,3 +52,4 @@ impl Scorable<u64> for UptimeChecker {
         println!("- Weighted Score: {}", result.weighted_score);
         println!("- Comment: {}", result.comment);
     } 
+    */

@@ -1,11 +1,12 @@
-mod detection;
-mod scoring;
+pub mod detection;
+mod scorer;
+
 
 fn main () {
-    detection::uptime::main();
+   /* detection::uptime::main();
     detection::processor::main();
     detection::ram::main();
-    detection::memory::main();
-
-
-}
+    detection::memory::main(); 
+ */
+scorer::score();
+    }

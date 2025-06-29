@@ -3,6 +3,7 @@ use sysinfo::{
 };
 use crate::detection::shared::Scorable;
 use crate::detection::shared::CheckResult;
+use colored::Colorize;
 
 fn get_ram_mem() -> u64 {
         let mut sys = System::new_all();
@@ -36,9 +37,9 @@ impl Scorable<u64> for Mem {
         let score = if result <= 4194302 { 0.3 } else { 0.0 };
         let weighted = score * self.weight();
         let comment = if score > 0.0 {
-            "Ram too low (potato computer?). Suspicious".into()
+            "Ram too low (potato computer?). Suspicious".red().to_string()
         } else {
-            "RAM mem OK".into()
+            "RAM mem OK".green().to_string()
         };
         CheckResult::new(result, self.weight(), score, weighted, comment)
     }

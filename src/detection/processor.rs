@@ -1,6 +1,7 @@
 use windows::Win32::System::SystemInformation::{GetSystemInfo, SYSTEM_INFO};
 use std::mem;
 use crate::detection::shared::Scorable;
+use colored::Colorize;
 
 
 fn sys_info() -> u32{
@@ -28,9 +29,9 @@ impl Scorable<u32> for ProcChecker {
     
     fn create_comment(&self) -> String {
         if self.calculate_score() == 0.6 {
-            "Proc number too low (potato computer). Suspicious".into()
+            "Proc number too low (potato computer). Suspicious".red().to_string()
         } else {
-            "Proc num OK".into()
+            "Proc num OK".green().to_string()
         }
     }
     fn weighted_score(&self) -> f64 {
@@ -50,6 +51,7 @@ impl Scorable<u32> for ProcChecker {
 
 }
 
+/*
 pub fn main () {
         let checker = ProcChecker;
         let result = checker.build_struct();
@@ -60,3 +62,4 @@ pub fn main () {
         println!("- Comment: {}", result.comment);
     }
 
+*/
