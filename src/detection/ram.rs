@@ -20,7 +20,7 @@ impl Scorable<u64> for Mem {
     }
 
     fn weight(&self) -> f64  {
-        0.0
+        0.5
     }
     
     fn create_comment(&self) -> String  {
@@ -34,7 +34,7 @@ impl Scorable<u64> for Mem {
 // refresh_all 3 times
     fn build_struct(&self) -> crate::detection::shared::CheckResult<u64> {
         let result = get_ram_mem();  // cache the value here
-        let score = if result <= 4194302 { 0.3 } else { 0.0 };
+        let score = if result <= 4294967296 { 0.7 } else { 0.0 };
         let weighted = score * self.weight();
         let comment = if score > 0.0 {
             "Ram too low (potato computer?). Suspicious".red().to_string()
@@ -45,6 +45,7 @@ impl Scorable<u64> for Mem {
     }
 }
 
+/*
 pub fn main () {
         let checker = Mem;
         let result = checker.build_struct();
@@ -55,3 +56,4 @@ pub fn main () {
         println!("- Comment: {}", result.comment);
     }
 
+*/

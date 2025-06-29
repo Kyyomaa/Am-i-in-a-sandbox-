@@ -18,8 +18,8 @@ pub struct ProcChecker;
 impl Scorable<u32> for ProcChecker {
     fn calculate_score(&self) -> f64 {
         let procnum = sys_info();
-        if procnum <= 3 
-        { 0.6 } 
+        if procnum <= 4
+        { 0.8 } 
         else 
         { 0.0 }
     }
@@ -28,7 +28,7 @@ impl Scorable<u32> for ProcChecker {
     }
     
     fn create_comment(&self) -> String {
-        if self.calculate_score() == 0.6 {
+        if self.calculate_score() != 0.0 {
             "Proc number too low (potato computer). Suspicious".red().to_string()
         } else {
             "Proc num OK".green().to_string()

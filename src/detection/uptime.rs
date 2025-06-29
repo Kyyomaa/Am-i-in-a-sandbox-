@@ -9,7 +9,7 @@ impl Scorable<u64> for UptimeChecker {
     fn calculate_score(&self) -> f64 {
         let uptime = unsafe { GetTickCount64() };
         if uptime <= 1800000 
-        { 0.35 } 
+        { 0.7 } 
         else 
         { 0.0}
     }
@@ -18,7 +18,7 @@ impl Scorable<u64> for UptimeChecker {
     }
     
     fn create_comment(&self) -> String {
-        if self.calculate_score() == 0.35 {
+        if self.calculate_score() != 0.00 {
             "Tick count too low. Suspicious".red().to_string()
         } else {
             "Tick count OK".to_string()
