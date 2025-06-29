@@ -31,7 +31,7 @@ impl Scorable<u64> for Gb {
     }
 
 // implemented directly in the struct bc more efficient, otherwise i would have to call 
-// refresh_all 3 times
+// new_with_refreshed_list 3 times
     fn build_struct(&self) -> crate::detection::shared::CheckResult<u64> {
         let disks = Disks::new_with_refreshed_list();
         let result: u64 = disks.list().iter()
