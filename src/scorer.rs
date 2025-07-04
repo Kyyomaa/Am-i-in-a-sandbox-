@@ -9,7 +9,7 @@ pub fn score() {
     let proc_checker: detection::processor::ProcChecker = detection::processor::ProcChecker;
     let ram_checker: detection::ram::Mem = detection::ram::Mem;
     let gb_checker: detection::memory::Gb= detection::memory::Gb;
-
+    let mac_checker: detection::mac::MacChecker=  detection::mac::MacChecker;
 
     let mut check_results = Vec::new();
     let mut combined_probability = 1.0; // Start with 100% chance of being genuine
@@ -50,6 +50,14 @@ pub fn score() {
         gb_result.comment
     ));
 
+    let mac_result = mac_checker.build_struct();
+    combined_probability *= 1.0 - mac_result.weighted_score;
+    check_results.push((
+        "Mac address Check",
+        mac_result.result.to_string(),
+        mac_result.weighted_score,
+        mac_result.comment
+    ));
 
 
     // ill Add more checks ...

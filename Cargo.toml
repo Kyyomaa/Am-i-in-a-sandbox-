@@ -6,6 +6,9 @@ edition = "2024"
 [dependencies]
 sysinfo = "0.35.2"
 colored = "3.0.0"
+mac_address = "1.1.8"
+
+
 [dependencies.windows]
 version = "0.61"
 features = [
