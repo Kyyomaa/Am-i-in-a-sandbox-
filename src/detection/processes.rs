@@ -15,10 +15,18 @@ impl Scorable<String> for ProcessChecker {
     fn calculate_score(&self) -> f64 {
         let found = proc_detection();
     let suspicious = [
-        OsStr::new("vmtoolsd.exe"),
-        OsStr::new("vmwaretray.exe"),
-        OsStr::new("vboxservice.exe"),
+        OsStr::new("vmtoolsd.exe"), 
+        OsStr::new("vmtoolsd.exe"), 
+        OsStr::new("vmwareuser.exe"), 
+        OsStr::new("TPAutoConnSvc.exe"),
+        OsStr::new("VGAuthService.exe"), 
+        OsStr::new("VMwareService.exe"), 
+        OsStr::new("Vm3dservice.exe"),
+
+        //vbox
+        OsStr::new("vboxservice.exe"), 
         OsStr::new("vboxtray.exe"),
+        OsStr::new("VboxControl.exe"),
     ];
     if found.iter().any(|p| suspicious.contains(&OsStr::new(p))) {
         return 0.9;
