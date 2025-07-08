@@ -26,7 +26,7 @@ impl Scorable<String> for ProcessChecker {
     let len = found.len();
     if len >= 1 && len <= 2 {
         0.2
-    } else if len >= 5 {
+    } else if len >= 4 {
         0.8
     } else {
         0.0
