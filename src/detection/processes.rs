@@ -18,15 +18,15 @@ impl Scorable<String> for ProcessChecker {
         OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmwareuser.exe"), 
-        OsStr::new("TPAutoConnSvc.exe"),
-        OsStr::new("VGAuthService.exe"), 
-        OsStr::new("VMwareService.exe"), 
-        OsStr::new("Vm3dservice.exe"),
+        OsStr::new("tpautoconnsvc.exe"),
+        OsStr::new("vgauthservice.exe"), 
+        OsStr::new("vmwareservice.exe"), 
+        OsStr::new("vm3dservice.exe"),
 
         //vbox
         OsStr::new("vboxservice.exe"), 
         OsStr::new("vboxtray.exe"),
-        OsStr::new("VboxControl.exe"),
+        OsStr::new("vboxcontrol.exe"),
     ];
     if found.iter().any(|p| suspicious.contains(&OsStr::new(p))) {
         return 0.9;
@@ -82,15 +82,15 @@ fn proc_detection() -> Vec<String> {
         OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmwareuser.exe"), 
-        OsStr::new("TPAutoConnSvc.exe"),
-        OsStr::new("VGAuthService.exe"), 
-        OsStr::new("VMwareService.exe"), 
-        OsStr::new("Vm3dservice.exe"),
+        OsStr::new("tpautoconnsvc.exe"),
+        OsStr::new("vgauthservice.exe"), 
+        OsStr::new("vmwareservice.exe"), 
+        OsStr::new("vm3dservice.exe"),
 
         //vbox
         OsStr::new("vboxservice.exe"), 
         OsStr::new("vboxtray.exe"),
-        OsStr::new("VboxControl.exe"),
+        OsStr::new("vboxcontrol.exe"),
         //others
         OsStr::new("qemu-ga.exe"),
         OsStr::new("prl_cc.exe"),
