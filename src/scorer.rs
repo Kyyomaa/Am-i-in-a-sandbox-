@@ -1,4 +1,4 @@
-use crate::detection;
+use crate::detection::{self, processes};
 use crate::detection::shared::Scorable;
 use colored::Colorize;
 
@@ -10,6 +10,7 @@ pub fn score() {
     let ram_checker: detection::ram::Mem = detection::ram::Mem;
     let gb_checker: detection::memory::Gb= detection::memory::Gb;
     let mac_checker: detection::mac::MacChecker=  detection::mac::MacChecker;
+    let processes_checker: detection::processes::ProcessChecker = detection::processes::ProcessChecker;
 
     let mut check_results = Vec::new();
     let mut combined_probability = 1.0; // Start with 100% chance of being genuine
@@ -59,6 +60,15 @@ pub fn score() {
         mac_result.comment
     ));
 
+    let processes_result = processes_checker.build_struct();
+    combined_probability *= 1.0 - processes_result.weighted_score;
+    check_results.push((
+        "Suspicious running processes Check",
+        processes_result.result.to_string(),
+        processes_result.weighted_score,
+        processes_result.comment
+    ));
+
 
     // ill Add more checks ...
 
@@ -77,7 +87,7 @@ pub fn score() {
     println!("\n=== Final Probability ===");
     println!("Sandbox Probability: {:.2}", sandbox_probability);
 
-    // Determine verdict
+    // verdict
     if sandbox_probability > 0.5 {
         println!("{}", "VERDICT: Suspicious - possible sandbox".red());
     } else if sandbox_probability > 0.3 {

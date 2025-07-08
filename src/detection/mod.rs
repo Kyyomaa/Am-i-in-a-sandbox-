@@ -4,3 +4,4 @@ pub mod uptime;
 pub mod shared;
 pub mod memory;
 pub mod mac;
+pub mod processes;
