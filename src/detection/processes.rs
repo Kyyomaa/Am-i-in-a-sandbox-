@@ -16,7 +16,6 @@ impl Scorable<String> for ProcessChecker {
         let found = proc_detection();
     let suspicious = [
         OsStr::new("vmtoolsd.exe"), 
-        OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmwareuser.exe"), 
         OsStr::new("tpautoconnsvc.exe"),
         OsStr::new("vgauthservice.exe"), 
@@ -79,7 +78,6 @@ impl Scorable<String> for ProcessChecker {
 fn proc_detection() -> Vec<String> {
     let processes = [
         //vmware
-        OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmtoolsd.exe"), 
         OsStr::new("vmwareuser.exe"), 
         OsStr::new("tpautoconnsvc.exe"),
