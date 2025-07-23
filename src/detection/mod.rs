@@ -1,3 +1,5 @@
+pub mod prove;
+
 pub mod processor;
 pub mod ram;
 pub mod uptime;

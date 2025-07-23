@@ -1,8 +1,9 @@
+/* */
 use crate::detection::shared::{Scorable, CheckResult};
 use colored::Colorize;
 use std::path::Path;
 
-    fn file_detection() -> Vec<String> {
+   fn file_detection() -> Vec<String> {
         let paths = [
             //vmware
         r"C:\Windows\System32\drivers\vmhgfs.sys",
@@ -52,7 +53,6 @@ use std::path::Path;
         r"C:\Program Files\IDA",
         r"C:\Program Files (x86)\IDA Pro",
         r"C:\Program Files\Debugging Tools for Windows",
-        r"C:\Program Files (x86)\Windows Kits\10\Debuggers",
         r"C:\Program Files (x86)\Immunity Inc\Immunity Debugger",
         r"C:\ghidra",
         r"C:\Program Files\ghidra",
@@ -101,9 +101,7 @@ use std::path::Path;
         r"C:\Users\<User>\Documents\IDA Pro",
         r"C:\Users\<User>\Documents\RegShot",
         r"C:\ProgramData\Sandboxie",
-        r"C:\ProgramData\Malwarebytes\MBAMService",
-        r"C:\ProgramData\Microsoft\Windows\WER\ReportArchive"
-
+        r"C:\ProgramData\Malwarebytes\MBAMService"
     ];
 
             paths
@@ -168,4 +166,3 @@ impl Scorable<String> for FilesChecker {
         )
     }
 }
-
