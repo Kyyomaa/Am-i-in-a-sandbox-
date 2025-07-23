@@ -11,7 +11,8 @@ pub fn score() {
     let gb_checker: detection::memory::Gb= detection::memory::Gb;
     let mac_checker: detection::mac::MacChecker=  detection::mac::MacChecker;
     let processes_checker: detection::processes::ProcessChecker = detection::processes::ProcessChecker;
-
+    let files_checker:  detection::files::FilesChecker = detection::files::FilesChecker;
+   
     let mut check_results = Vec::new();
     let mut combined_probability = 1.0; // Start with 100% chance of being genuine
 
@@ -68,6 +69,17 @@ pub fn score() {
         processes_result.weighted_score,
         processes_result.comment
     ));
+
+    let files_result = files_checker.build_struct();
+    combined_probability *= 1.0 - files_result.weighted_score;
+    check_results.push((
+        "Suspicious Files Check",
+        files_result.result.to_string(),
+        files_result.weighted_score,
+        files_result.comment
+    ));
+
+
 
 
     // ill Add more checks ...
